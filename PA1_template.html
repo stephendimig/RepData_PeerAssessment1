@@ -99,7 +99,8 @@ if(file.exists(csvFileName))
 <pre class="r"><code>aggdata &lt;- aggregate(cleanDf$steps, by=list(cleanDf$date), FUN=sum)</code></pre>
 <p>Next we make a histogram of the data from above to show the relative level of activity per day. This plot is useful for showing the magnitude of difference between days with many steps and days with few steps (indicating a low level of activity).</p>
 <pre class="r"><code>hist(aggdata$x, xlab=&quot;Steps per day&quot;, main=&quot;Histogram of Total Steps per day&quot;, breaks=c(0,2500,5000,7500,10000,12500,15000,17500,20000,22500,25000))</code></pre>
-<p><img src="PA1_template_files/figure-html/unnamed-chunk-4-1.png" /> Next we compute the average of the total number of steps taken per day:</p>
+<p><img src="PA1_template_files/figure-html/unnamed-chunk-4-1.png" /></p>
+<p>Next we compute the average of the total number of steps taken per day:</p>
 <pre class="r"><code>cleanMean &lt;- mean(aggdata$x)
 print(sprintf(&quot;The mean number of steps for the cleaned data set is: %f&quot;, cleanMean))</code></pre>
 <pre><code>## [1] &quot;The mean number of steps for the cleaned data set is: 10766.188679&quot;</code></pre>
@@ -143,7 +144,8 @@ for(i in 1:dim(normDf)[1])
 <p>This histogram shows the relative level of activity per day using the normalized data. This plot is useful for showing the magnitude of difference between days with many steps and days with few steps (indicating a low level of activity). There seems to be very little difference between the normalized data and the scrubbed data.</p>
 <pre class="r"><code>aggdata &lt;- aggregate(normDf$steps, by=list(normDf$date), FUN=sum)
 hist(aggdata$x, xlab=&quot;Steps per day&quot;, main=&quot;Histogram of Total Steps per day&quot;, breaks=c(0,2500,5000,7500,10000,12500,15000,17500,20000,22500,25000))</code></pre>
-<p><img src="PA1_template_files/figure-html/unnamed-chunk-11-1.png" /> Next we calculate the mean of the number of steps per day using the normalized data and again find very little difference with the value calculated for the scrubbed clean data.</p>
+<p><img src="PA1_template_files/figure-html/unnamed-chunk-11-1.png" /></p>
+<p>Next we calculate the mean of the number of steps per day using the normalized data and again find very little difference with the value calculated for the scrubbed clean data.</p>
 <pre class="r"><code>normMean &lt;- mean(aggdata$x)
 percentChange &lt;- 100.0 * ((normMean - cleanMean)/cleanMean)
 print(sprintf(&quot;The mean number of steps for the normalized data set is: %f, the mean for the cleaned data set is: %f, the percent chage is: %f&quot;, normMean, cleanMean, percentChange))</code></pre>
@@ -164,7 +166,8 @@ normDf$is.weekday &lt;- as.factor(normDf$is.weekday)</code></pre>
 <pre class="r"><code>aggdata &lt;- aggregate(normDf$steps, by=list(normDf$interval, normDf$is.weekday), FUN=mean)
 names(aggdata) &lt;- c(&quot;interval&quot;, &quot;is.weekday&quot;, &quot;steps&quot;)
 xyplot(steps~interval | is.weekday, aggdata, type=&quot;l&quot;, horizontal=TRUE)</code></pre>
-<p><img src="PA1_template_files/figure-html/unnamed-chunk-15-1.png" /> The plot seems to indicate that more activity occurs on the weekend but it is not as clear cut as you might want To get a clearer picture, the mean and median number of steps need to be calculated for the weekday and weekends.</p>
+<p><img src="PA1_template_files/figure-html/unnamed-chunk-15-1.png" /></p>
+<p>The plot seems to indicate that more activity occurs on the weekend but it is not as clear cut as you might want To get a clearer picture, the mean and median number of steps need to be calculated for the weekday and weekends.</p>
 <pre class="r"><code>mean.weekday &lt;- mean(aggdata[aggdata$is.weekday == &quot;Weekday&quot;, ]$steps)
 median.weekday &lt;- median(aggdata[aggdata$is.weekday == &quot;Weekday&quot;, ]$steps)
 mean.weekend &lt;- mean(aggdata[aggdata$is.weekday == &quot;Weekend&quot;, ]$steps)

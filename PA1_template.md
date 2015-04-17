@@ -41,7 +41,6 @@ if(file.exists(csvFileName))
 }
 ```
 
-
 ## What is mean total number of steps taken per day?
 To calcuate the total steps taken per day, the aggregate() method was used to sum the steps by the date. This calculation results iin a dataframe with two columns representing the data and total number of steps on that date.
 
@@ -58,6 +57,7 @@ hist(aggdata$x, xlab="Steps per day", main="Histogram of Total Steps per day", b
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
+
 Next we compute the average of the total number of steps taken per day: 
 
 
@@ -106,7 +106,6 @@ print(sprintf("The maximum average number of steps is %f taken during interval %
 ## [1] "The maximum average number of steps is 206.169811 taken during interval 835"
 ```
 
-
 ## Imputing missing values
 Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data.
 
@@ -136,6 +135,7 @@ for(i in 1:dim(normDf)[1])
     }
 }
 ```
+
 This histogram shows the relative level of activity per day using the normalized data. This plot is useful for showing the magnitude of difference between days with many steps and days with few steps (indicating a low level of activity). There seems to be very little difference between the normalized data and the scrubbed data.
 
 ```r
@@ -144,6 +144,7 @@ hist(aggdata$x, xlab="Steps per day", main="Histogram of Total Steps per day", b
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-11-1.png) 
+
 Next we calculate the mean of the number of steps per day using the normalized data and again find very little difference with the value calculated for the scrubbed clean data.
 
 ```r
@@ -155,6 +156,7 @@ print(sprintf("The mean number of steps for the normalized data set is: %f, the 
 ```
 ## [1] "The mean number of steps for the normalized data set is: 10766.188679, the mean for the cleaned data set is: 10766.188679, the percent chage is: 0.000000"
 ```
+
 Finally we calculate the median of the number of steps per day using the normalized data and again find very little difference with the value calculated for the scrubbed clean data.
 
 ```r
@@ -166,7 +168,6 @@ print(sprintf("The mean number of steps for the normalized data set is: %f, the 
 ```
 ## [1] "The mean number of steps for the normalized data set is: 10766.188679, the mean for the cleaned data set is: 10765.000000, the percent chage is: 0.011042"
 ```
-
 
 ## Are there differences in activity patterns between weekdays and weekends?
 First, a new character string variable was created in the dataset specifying the day of the week, then a new factor variable was created based on that with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
@@ -186,6 +187,7 @@ xyplot(steps~interval | is.weekday, aggdata, type="l", horizontal=TRUE)
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-15-1.png) 
+
 The plot seems to indicate that more activity occurs on the weekend but it is not as clear cut as you might want To get a clearer picture, the mean and median number of steps need to be calculated for the weekday and weekends.
 
 
@@ -209,6 +211,7 @@ print(sprintf("The median number of steps on a weekday is: %f ; on the weekend i
 ```
 ## [1] "The median number of steps on a weekday is: 25.803145 ; on the weekend is: 32.339623"
 ```
+
 The conclusion from this is that there is definitely more activity on weekends. Both the mean and median values are higher on the weekend.
 
 
